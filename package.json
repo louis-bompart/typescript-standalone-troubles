@@ -1,0 +1,19 @@
+{
+  "name": "typescript-standalone-troubles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npx tsc compile.ts && node compile.js",
+    "start": "node compiled.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.6.0"
+  }
+}
