@@ -2,13 +2,16 @@ import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import * as ts from 'typescript';
 
-
+ts.setOriginalNode
 /**
  * Inspired from https://github.com/ionic-team/stencil/blob/a1ab21bdebdbbfebc31bdf8a6dd8eac5ed560be7/src/compiler/transformers/decorators-to-static/convert-decorators.ts#L87
  */
 const visitClassDeclaration = classNode => {
   classNode.modifiers.shift();
-  return ts.factory.updateClassDeclaration(classNode, classNode.modifiers, classNode.name, classNode.typeParameters, classNode.heritageClauses, classNode.members);
+  const newNode = ts.factory.createClassDeclaration(classNode.modifiers, classNode.name, classNode.typeParameters, classNode.heritageClauses, classNode.members);
+  ts.setOriginalNode(classNode, newNode);
+  ts.setTextRange(classNode, newNode);
+  return newNode;
 };
 
 /**
